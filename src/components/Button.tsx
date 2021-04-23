@@ -10,26 +10,34 @@ import colors from "../styles/colors";
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
 }
-export function Button({ title, ...rest }: ButtonProps) {
+export function Button({ title, disabled, ...rest }: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7} {...rest}>
-      <Text style={styles.buttontext}>{title}</Text>
+    <TouchableOpacity
+      style={disabled ? styles.disabled : styles.button}
+      {...rest}
+    >
+      <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors.green,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 16,
-    marginBottom: 10,
     height: 56,
-    width: 56,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.green,
   },
-  buttontext: {
+  disabled: {
+    height: 56,
+    borderRadius: 16,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: colors.gray,
+  },
+  text: {
+    fontSize: 16,
     color: colors.white,
-    fontSize: 24,
   },
 });
